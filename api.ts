@@ -67,4 +67,15 @@ export const transactionApi = {
       return { error: 'Failed to fetch report' };
     }
   },
+
+  // Delete a transaction
+  deleteTransaction: async (id: number) => {
+    try {
+      await apiClient.delete(`/transactions/${id}`);
+      return { success: true };
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      return { error: 'Failed to delete transaction' };
+    }
+  },
 };

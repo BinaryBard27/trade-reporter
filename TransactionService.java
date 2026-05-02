@@ -48,6 +48,14 @@ public class TransactionService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
+    public void deleteTransaction(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Transaction not found with id: " + id);
+        }
+        repository.deleteById(id);
+    }
+
     private TransactionDTO mapToDTO(Transaction entity) {
         return TransactionDTO.builder()
                 .id(entity.getId())

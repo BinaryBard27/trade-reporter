@@ -41,4 +41,11 @@ public class TransactionController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to) {
         return ResponseEntity.ok(service.getReport(from, to));
     }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete a trade transaction")
+    public ResponseEntity<Void> deleteTransaction(@PathVariable Long id) {
+        service.deleteTransaction(id);
+        return ResponseEntity.noContent().build();
+    }
 }
